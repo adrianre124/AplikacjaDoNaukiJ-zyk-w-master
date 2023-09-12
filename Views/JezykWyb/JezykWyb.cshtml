@@ -1,0 +1,27 @@
+@model IEnumerable<Jezyk>;
+
+@{
+    ViewData["Title"] = "Wybierz Język";
+    ViewBag.Poziom ??= "Podstawowy";
+}
+<div class="container">
+    <h2 class="pb-2 border-bottom">Wybierz Język</h2>
+    <div class="row g-3">
+        @foreach (var jezyk in Model)
+        {
+         <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex align-items-stretch">
+            <div class="card">
+                <img src='@jezyk.ImageUrl' alt="Flaga" class="card-img-top"/>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Język @jezyk.NazwaJezyka</h5>
+                    <p class="card-text mb-4">@jezyk.Opis</p>
+                    <a href="@Url.Action("PoziomWyb", "Slownik", new {nazwaJezyka = @jezyk.NazwaJezyka})" class="btn btn-primary mt-auto align-self-startb btn-block">
+                    Wybierz
+                    </a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+  </div>
+

@@ -1,0 +1,38 @@
+[
+    {
+        "PoziomSlowa": "podstawowy",
+        "SlowoPol": "Witam",
+        "SlowoAng": "Hello",
+        "SlowoAra": "أهلا",
+        "SlowoUkr": "привіт"
+    },
+    {
+        "PoziomSlowa": "podstawowy",
+        "SlowoPol": "wiek",
+        "SlowoAng": "age",
+        "SlowoAra": "سن",
+        "SlowoUkr": "вік"
+    },
+    {
+        "PoziomSlowa": "podstawowy",
+        "SlowoPol": "jeleń",
+        "SlowoAng": "deer",
+        "SlowoAra": "عزيزي",
+        "SlowoUkr": "олень"
+    },
+    {
+        "PoziomSlowa": "podstawowy",
+        "SlowoPol": "herbata",
+        "SlowoAng": "tea",
+        "SlowoAra": "شاي",
+        "SlowoUkr": "чай"
+    },
+    {
+        "PoziomSlowa": "podstawowy",
+        "SlowoPol": "park",
+        "SlowoAng": "park",
+        "SlowoAra": "منتزه",
+        "SlowoUkr": "парк"
+    }
+    
+]

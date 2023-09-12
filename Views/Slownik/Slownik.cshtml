@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Slowo>;
+@{ ViewData["Title"] = "Słownik"; }
+<div class="container">
+    <div class="input-group">
+        <div class="form-outline">
+            <form asp-action="Znajdz" method="get">
+                <div class="form-group">
+                    <input type="text" name="SearchString" class="form-control" value="@ViewData["CurrentFilter"]" placeholder="Szukaj"/>
+                        <!--<input type="submit" value="Szukaj" class="btn bnt-primary" />-->
+                </div>
+            </form>
+        </div>
+    </div>
+    <table class="table  mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Słówko Ang</th>
+                <th scope="col">Słówko Pol</th>
+                <th scope="col">Słówko Ukr</th>
+                <th scope="col">Słówko Ara</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int counter = 1;
+                foreach (var slowo in Model)
+                {
+                     <tr>
+                        <th scope="row">@counter</th>
+                        <td>@slowo.SlowoAng</td>
+                        <td>@slowo.SlowoPol</td>
+                        <td>@slowo.SlowoUkr</td>
+                        <td>@slowo.SlowoAra</td>
+                    </tr>
+                    counter++;   
+                }
+            }
+        </tbody>
+    </table>
+</div>

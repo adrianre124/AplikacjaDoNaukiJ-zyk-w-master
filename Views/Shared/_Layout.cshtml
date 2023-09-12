@@ -1,0 +1,84 @@
+@using Microsoft.AspNetCore.Components
+@{
+    ViewBag.Poziom ??= "Podstawowy";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AplikacjaDoNaukiJęzyków</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" id="banner">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index"><span>Simple</span>Learning</a>
+          
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="JezykWyb" asp-action="JezykWyb">Jezyk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Slownik" asp-action="Slownik">Słownik</a>
+                    </li>
+                    <!--
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @ViewBag.Poziom
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            <a class="dropdown-item" href="~/Home/Index/1">Początkujący</a>
+                            <a class="dropdown-item" href="~/Home/Index/2">Średniozaawansowany</a>
+                            <a class="dropdown-item" onclick="...&Poziom=ViewBag.Poziom.ToString()&...">Zaawansowany</a>
+                             
+                            @foreach (var template in templates)
+                            {
+                                <input type="button" value=@template class="dropdown-item" onclick=ChangeStuff(EventArgs)/>
+                            }
+                            
+                        </div>
+
+                        @functions {
+                            List<string> templates = new List<string>() { "Podstawowy", "Średniozaawansowany", "Zaawansowany" };
+                        }
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+  
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <p>&copy; 2022 - AplikacjaDoNaukiJęzyków </p>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

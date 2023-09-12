@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Slowo>;
+
+<h1>Jezyk @ViewBag.NazwaJezyka</h1>
+
+    <table class="table  mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Słówko</th>
+                <th scope="col">Przetłumacz</th>
+                <th scope="col">Sprawdź odpowiedź</th>
+            </tr>
+        </thead>
+        <tbody>
+        @{
+            int counter = 1;
+            foreach (var slowo in Model)
+            {
+                <tr>
+                    <th scope="row">@counter</th>
+                    @switch(ViewBag.NazwaJezyka)
+                    {
+                        case "Angielski":
+                            <td class="slowo">@slowo.SlowoAng</td>
+                            break;
+                        case "Ukraiński":
+                            <td class="slowo">@slowo.SlowoUkr</td>
+                            break;
+                        case "Arabski":
+                            <td class="slowo">@slowo.SlowoAra</td>
+                            break;
+                    }
+                    <td class="slowo" style="display:none;">@slowo.SlowoPol</td>
+                    <td><input type="text" name="text" class="odpowiedz"></td>
+                    <td><button type="submit" class="btn btn-dark" onclick="sprawdz(this)"/>Sprwadź</td>
+                </tr> 
+               counter++;
+            }
+        }
+        </tbody>
+    </table>
+<script>
+    function sprawdz(elem) {
+        var parent = elem.parentNode.parentNode;
+        var tekst1 = parent.children[3].firstChild.value;
+        var tekst2 = parent.children[2];
+        var tekst3 = parent.children[1];
+        if (tekst1 === tekst2.textContent) {
+            return tekst3.style.color = "#90ee90";
+        } else {
+            return tekst3.style.color = "#ff0000";
+        }
+    }
+</script>
+    
