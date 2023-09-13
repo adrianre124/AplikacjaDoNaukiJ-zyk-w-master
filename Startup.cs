@@ -18,21 +18,24 @@ namespace AplikacjaDoNaukiJęzyków
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
             Configuration = configuration;
+            CurrentEnvironment = env;
         }
+
+        private IWebHostEnvironment CurrentEnvironment { get; set; }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services, IWebHostEnvironment env)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
             //services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             var connString = "";
-            if (env.IsDevelopment())
+            if (CurrentEnvironment.IsDevelopment())
                 connString = Configuration.GetConnectionString("DefaultConnection");
             else
             {
