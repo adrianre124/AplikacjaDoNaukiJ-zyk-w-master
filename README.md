@@ -1,4 +1,4 @@
-AplikacjaDoNaukiJezyków made in collaboration with https://github.com/adrianre124
+AplikacjaDoNaukiJezyków made in collaboration with https://github.com/HerFx
 
 <img width="1065" alt="AppJ1" src="https://user-images.githubusercontent.com/82316502/195151254-0cdb41b9-7c9c-4731-982a-4c0680c09256.png">
 <img width="1067" alt="AppJ2" src="https://user-images.githubusercontent.com/82316502/195151276-5b28b2ab-e925-4f15-b615-2f4a981905c0.png">

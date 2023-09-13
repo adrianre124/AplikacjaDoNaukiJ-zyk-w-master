@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Build.Framework;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,11 +26,34 @@ namespace AplikacjaDoNaukiJęzyków
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IWebHostEnvironment env)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddCors();
+            //services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+            var connString = "";
+            if (env.IsDevelopment())
+                connString = Configuration.GetConnectionString("DefaultConnection");
+            else
+            {
+                var connUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+                connUrl = connUrl.Replace("posgres://", string.Empty);
+                var pgUserPass = connUrl.Split("@")[1];
+                var pgHostPortDb = connUrl.Split("@")[1];
+                var pgHostPort = pgHostPortDb.Split("/")[0];
+                var pgDb = pgHostPortDb.Split("/")[1];
+                var pgUser = pgUserPass.Split(":")[0];
+                var pgPass = pgUserPass.Split(":")[1];
+                var pgHost = pgHostPort.Split(":")[0];
+                var pgPort = pgHostPort.Split(":")[1];
+
+                connString = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb}";
+            }
+            services.AddDbContext<DatabaseContext>(opt => 
+            {
+                opt.UseNpgsql(connString);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,11 +67,13 @@ namespace AplikacjaDoNaukiJęzyków
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
@@ -56,20 +82,20 @@ namespace AplikacjaDoNaukiJęzyków
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            // using var scope = app.ApplicationServices.CreateScope();
-            // var services = scope.ServiceProvider;
-            // try
-            // {
-            //     var context = services.GetRequiredService<DatabaseContext>();
-            //     context.Database.Migrate();
-            //     Seed.SeedWords(context);
+            using var scope = app.ApplicationServices.CreateScope();
+            var services = scope.ServiceProvider;
+            try
+            {
+                var context = services.GetRequiredService<DatabaseContext>();
+                context.Database.Migrate();
+                Seed.SeedWords(context);
 
-            // }
-            // catch (Exception ex)
-            // {
-            //     var logger = services.GetService<ILogger<Program>>();
-            //     logger.LogError(ex, "An error occurred during migration");
-            // }
+            }
+            catch (Exception ex)
+            {
+                var logger = services.GetService<ILogger<Program>>();
+                logger.LogError(ex, "An error occurred during migration");
+            }
         }
     }
 }

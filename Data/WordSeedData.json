@@ -33,6 +33,77 @@
         "SlowoAng": "park",
         "SlowoAra": "منتزه",
         "SlowoUkr": "парк"
+    },
+    {
+        "PoziomSlowa": "średniozaawansowany",
+        "SlowoPol": "zjawisko",
+        "SlowoAng": "phenomenon",
+        "SlowoAra": "ظاهرة",
+        "SlowoUkr": "явище"
+    },
+    {
+        "PoziomSlowa": "średniozaawansowany",
+        "SlowoPol": "rozgrywający",
+        "SlowoAng": "quarterback",
+        "SlowoAra": "قورتربك",
+        "SlowoUkr": "квотербек"
+    },
+    {
+        "PoziomSlowa": "średniozaawansowany",
+        "SlowoPol": "rekomendacja",
+        "SlowoAng": "recommendation",
+        "SlowoAra": "توصية",
+        "SlowoUkr": "рекомендація"
+    },
+    {
+        "PoziomSlowa": "średniozaawansowany",
+        "SlowoPol": "przedstawiciel",
+        "SlowoAng": "representative",
+        "SlowoAra": "وكيل",
+        "SlowoUkr": "представник"
+    },
+    {
+        "PoziomSlowa": "średniozaawansowany",
+        "SlowoPol": "udany",
+        "SlowoAng": "successful",
+        "SlowoAra": "ناجح",
+        "SlowoUkr": "успішний"
+    },
+    {
+        "PoziomSlowa": "zaawansowany",
+        "SlowoPol": "interpretować",
+        "SlowoAng": "construe",
+        "SlowoAra": "يفسر",
+        "SlowoUkr": "тлумачити"
+    },
+    {
+        "PoziomSlowa": "zaawansowany",
+        "SlowoPol": "zjadliwy",
+        "SlowoAng": "acrimonious",
+        "SlowoAra": "لاذع",
+        "SlowoUkr": "запеклий"
+    },
+    {
+        "PoziomSlowa": "zaawansowany",
+        "SlowoPol": "niewątpliwy",
+        "SlowoAng": "indubitable",
+        "SlowoAra": "لا يقبل الشك",
+        "SlowoUkr": "безсумнівний"
+    },
+    {
+        "PoziomSlowa": "zaawansowany",
+        "SlowoPol": "maskarada",
+        "SlowoAng": "masquerade",
+        "SlowoAra": "حفلة تنكرية",
+        "SlowoUkr": "маскарад"
+    },
+    {
+        "PoziomSlowa": "zaawansowany",
+        "SlowoPol": "oszczerstwo",
+        "SlowoAng": "aspersion",
+        "SlowoAra": "الشذوذ",
+        "SlowoUkr": "асперс"
     }
+    
     
 ]

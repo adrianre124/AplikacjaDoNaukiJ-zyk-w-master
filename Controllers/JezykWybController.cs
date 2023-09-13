@@ -37,7 +37,7 @@ namespace AplikacjaDoNaukiJęzyków.Controllers
         {
             ViewBag.NazwaJezyka = nazwaJezyka;
             ViewBag.Poziom = poziom;
-            var slowa = _context.Slowa.Where(s => String.Equals(s.PoziomSlowa, poziom));
+            var slowa = _context.Slowa.Where(s => String.Equals(s.PoziomSlowa, poziom.ToLower()));
             return View(slowa);
         }
 
