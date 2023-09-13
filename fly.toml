@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for languageapp on 2023-09-13T20:27:43+02:00
+# fly.toml app configuration file generated for languageapp on 2023-09-13T21:27:58+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -8,9 +8,6 @@ primary_region = "waw"
 
 [build]
   image = "adrianre/languageapp:latest"
-
-[env]
-  ASPNETCORE_URLS="http://+:8080"
 
 [http_service]
   internal_port = 8080
