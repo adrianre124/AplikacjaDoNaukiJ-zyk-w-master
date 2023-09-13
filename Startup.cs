@@ -41,7 +41,7 @@ namespace AplikacjaDoNaukiJęzyków
             {
                 var connUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 
-                connUrl = connUrl.Replace("posgres://", string.Empty);
+                connUrl = connUrl.Replace("postgres://", string.Empty);
                 var pgUserPass = connUrl.Split("@")[1];
                 var pgHostPortDb = connUrl.Split("@")[1];
                 var pgHostPort = pgHostPortDb.Split("/")[0];
