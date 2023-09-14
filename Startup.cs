@@ -1,18 +1,12 @@
 using AplikacjaDoNaukiJęzyków.Data;
-using AplikacjaDoNaukiJęzyków.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Build.Framework;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AplikacjaDoNaukiJęzyków
 {
@@ -34,15 +28,41 @@ namespace AplikacjaDoNaukiJęzyków
             services.AddControllersWithViews();
             //services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-            var connString = "";
+            // var connString = "";
+            // if (CurrentEnvironment.IsDevelopment())
+            //     connString = Configuration.GetConnectionString("DefaultConnection");
+            // else
+            // {
+            //     var connUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+            //     connUrl = connUrl.Replace("postgres://", string.Empty);
+            //     var pgUserPass = connUrl.Split("@")[0];
+            //     var pgHostPortDb = connUrl.Split("@")[1];
+            //     var pgHostPort = pgHostPortDb.Split("/")[0];
+            //     var pgDb = pgHostPortDb.Split("/")[1];
+            //     var pgUser = pgUserPass.Split(":")[0];
+            //     var pgPass = pgUserPass.Split(":")[1];
+            //     var pgHost = pgHostPort.Split(":")[0];
+            //     var pgPort = pgHostPort.Split(":")[1];
+
+            //     connString = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb}";
+            // }
+            // services.AddDbContext<DatabaseContext>(opt => 
+            // {
+            //     opt.UseNpgsql(connString);
+            // });
+
+            string connectionString = String.Empty;
             if (CurrentEnvironment.IsDevelopment())
-                connString = Configuration.GetConnectionString("DefaultConnection");
+                connectionString = Configuration.GetConnectionString("DefaultConnection");
             else
             {
+                // Use connection string provided at runtime by Fly.
                 var connUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
-
+                
+                // Parse connection URL to connection string for Npgsql
                 connUrl = connUrl.Replace("postgres://", string.Empty);
-                var pgUserPass = connUrl.Split("@")[1];
+                var pgUserPass = connUrl.Split("@")[0];
                 var pgHostPortDb = connUrl.Split("@")[1];
                 var pgHostPort = pgHostPortDb.Split("/")[0];
                 var pgDb = pgHostPortDb.Split("/")[1];
@@ -50,12 +70,13 @@ namespace AplikacjaDoNaukiJęzyków
                 var pgPass = pgUserPass.Split(":")[1];
                 var pgHost = pgHostPort.Split(":")[0];
                 var pgPort = pgHostPort.Split(":")[1];
+                var updatedHost = pgHost.Replace("flycast", "internal");
 
-                connString = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb}";
+                connectionString = $"Server={updatedHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb};";
             }
             services.AddDbContext<DatabaseContext>(opt => 
             {
-                opt.UseNpgsql(connString);
+                opt.UseNpgsql(connectionString);
             });
         }
 
